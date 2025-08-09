@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Kabod Muebles</title>
+    <link rel="stylesheet" href="Style.css">
+    <script defer src="js.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1><img src="IMAGENES/logo pequeño.png"></h1>
+     
+        <nav>
+            <ul>
+            <li><a href="login.html">INICIAR SESIÓN</a></li>
+            <li><a href="INICIO.html">INICIO</a></li>
+            <li><a href="salas.html">SALAS</a></li>
+            <li><a href="comedores.html">COMEDORES</a></li>
+            <li><a href="contacto.html"class="activo">CONTACTENOS</a></li>
+        </ul>
+        </nav>
+    </header>
+<main>
+    <h1>📥 CONTÁCTENOS 📤 </h1>
+    <h2>📲 CELULAR 3110000000 📲</h2>
+</main>
+    <section class="contactenos">
+     
+        <form id="form-contacto">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono">
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+        
+    </section>
+
+    <footer>     
+        <a href="https://www.instagram.com/kabodmuebles/"><img src="IMAGENES/instagram.png" alt="Instagram"></a>
+        <a href="https://www.facebook.com/kabodmuebles/"><img src="IMAGENES/facebook.png" alt="Facebook"></a>
+        <a href="#" onclick="mostrarAlertaTikTok(event)"><img src="IMAGENES/tiktok.png" alt="TikTok"></a>
+        <a href="#" onclick="mostrarAlertaGmail(event)"><img src="IMAGENES/gmail.png" alt="Correo"></a>
+    </footer>
+</body>
+</html>

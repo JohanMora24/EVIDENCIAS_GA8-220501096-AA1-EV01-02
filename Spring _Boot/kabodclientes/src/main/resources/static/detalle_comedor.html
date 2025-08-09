@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comedor Valencia | Kabod Muebles</title>
+    <link rel="stylesheet" href="Style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+       
+        <h1><img src="IMAGENES/logo pequeño.png"></h1>
+        <nav>
+            <ul>
+                <li><a href="login.html">INICIAR SESIÓN</a></li>
+                <li><a href="INICIO.html">INICIO</a></li>
+                <li><a href="salas.html">SALAS</a></li>
+                <li><a href="comedores.html"class="activo">COMEDORES</a></li>
+                <li><a href="contacto.html">CONTACTENOS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="producto-detalle-comedor">
+        <div class="imagen-producto-comedor">
+            <img id="imagen-comedor" src="IMAGENES/comedor.jpeg" alt="Comedor Valencia">
+            <h4> Comedor en cedro de 4 O 6 puestos compuesto por: 3 sillas montilla y un butaco  <br>
+                 valencia de 1 metro (Escoge el color de madera y tapizado que mas te guste) </h4>
+        </div>
+        <div class="info-producto-comedor">
+            <h1>COMEDOR VALENCIA</h1>
+            <p><strong>PRECIO:</strong> <strong>$1.900.000</strong></p>
+
+            <h3>TAMAÑO</h3>
+            <button onclick="cambiarImagen('IMAGENES/comedor.jpeg')">4 PUESTOS</button>
+            <button onclick="cambiarImagen('IMAGENES/Valencia_6pts.jpeg')">6 PUESTOS</button>
+
+           
+
+            <h3>COLOR DE MADERA</h3>
+            <select>
+                <option value="Caramelo medio"><strong>Caramelo Medio</strong> </option>
+                <option value="Miel">Miel</option>
+                <option value="Wengue">Wengue</option>
+                <option value="Negro">Negro</option>
+                <option value="Caramelo Oscuro">Caramelo Oscuro</optio>
+            </select>
+
+            <h3>COLOR TAPIZADO</h3>
+            <select>
+                <option value="Azul"><strong>Azul petróleo</strong> </option>
+                <option value="Gris">Gris oscuro</option>
+                <option value="Beige">Beige</option>
+                <option value="Cafe">Cafe</option>
+                <option value="Blanco">Blanco</optio>
+            </select>
+          
+
+            <h3>CANTIDAD</h3>
+            <input type="number" value="1" min="1" >
+            
+            <button class="carrito"> 🛒AGREGAR AL CARRITO 🛒</button>
+        </div>
+    </section>
+
+   <section class="materiales-dobles">
+    <!-- Primer bloque -->
+    <div class="materiales">
+        <h2>TIPO DE MATERIAL PARA EL TAPIZADO</h2>
+        <div class="opciones-material">
+            <img src="IMAGENES/azul.jpg" alt="Material 1">
+            <img src="IMAGENES/rosa.jpg" alt="Material 2">
+            <img src="IMAGENES/pranna.jpg" alt="Material 3">
+            <img src="IMAGENES/cafe.jpg" alt="Material 4">
+        </div>
+    </div>
+
+    <!-- Segundo bloque -->
+    <div class="materiales">
+        <h2>COLOR DE MADERA DISPONIBLE</h2>
+        <div class="opciones-material">
+            <img src="IMAGENES/caramelo_medio.JPG" alt="Madera 1">
+            <img src="IMAGENES/Wengue.JPG" alt="Madera 2">
+            <img src="IMAGENES/Negro.JPG" alt="Madera 3">
+            <img src="IMAGENES/Miel.JPG" alt="Madera 4">
+        </div>
+    </div>
+     </section>
+
+    <footer>
+        <a href="https://www.instagram.com/kabodmuebles/"><img src="IMAGENES/instagram.png" alt="Instagram"></a>
+        <a href="https://www.facebook.com/kabodmuebles/"><img src="IMAGENES/facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="IMAGENES/tiktok.png" alt="TikTok"></a>
+        <a href="#"><img src="IMAGENES/gmail.png" alt="Correo"></a>
+    </footer>
+</body>
+<script>
+    function cambiarImagen(nuevaImagen) {
+        document.getElementById('imagen-comedor').src = nuevaImagen;
+    }
+</script>
+
+</html>

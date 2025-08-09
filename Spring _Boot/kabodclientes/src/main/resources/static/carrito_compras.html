@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrito de Compras - Kabod Muebles</title>
+  <link rel="stylesheet" href="Style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      font-family: 'Montserrat', sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+    th, td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    button.eliminar-btn {
+      background-color: #e74c3c;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    button.eliminar-btn:hover {
+      background-color: #c0392b;
+    }
+    #total-carrito {
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-align: right;
+      margin-bottom: 20px;
+    }
+    #btnConfirmarPedido {
+      display: block;
+      margin: 10px auto 30px auto;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    #btnConfirmarPedido:hover {
+      background-color: #1e8449;
+    }
+    .sin-productos {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 40px;
+      color: #555;
+    }
+    #selectorVendedor {
+      display: block;
+      margin: 0 auto 20px auto;
+      font-size: 1.1rem;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 150px;
+      text-align: center;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>
+      <img src="IMAGENES/logo pequeño.png" alt="Logo Kabod Muebles" />
+    </h1>
+    <nav>
+      <ul>
+        <li><a href="login.html">INICIAR SESIÓN</a></li>
+        <li><a href="INICIO.html">INICIO</a></li>
+        <li><a href="salas.html">SALAS</a></li>
+        <li><a href="comedores.html">COMEDORES</a></li>
+        <li><a href="contacto.html">CONTACTENOS</a></li>
+        <li><a href="carrito.html" class="activo">CARRITO</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Tu Carrito de Compras</h1>
+
+    <div id="contenedor-carrito"></div>
+
+    <!-- Selector para elegir vendedor -->
+    <select id="selectorVendedor" title=" Seleccione un vendedor ">
+      <option value="" disabled selected>Seleccione vendedor</option>
+      <option value="1">Vendedor 1</option>
+      <option value="2">Vendedor 2</option>
+      <option value="3">Vendedor 3</option>
+      <option value="4">Vendedor 4</option>
+      <option value="5">Sin Vendedor</option>
+      
+      
+    </select>
+
+    <button id="btnConfirmarPedido">Confirmar Pedido</button>
+  </main>
+
+  <footer>
+    <a href="https://www.instagram.com/kabodmuebles/"><img src="IMAGENES/instagram.png" alt="Instagram"/></a>
+    <a href="https://www.facebook.com/kabodmuebles/"><img src="IMAGENES/facebook.png" alt="Facebook"/></a>
+    <a href="#"><img src="IMAGENES/tiktok.png" alt="TikTok" /></a>
+    <a href="#"><img src="IMAGENES/gmail.png" alt="Correo" /></a>
+  </footer>
+
+  <script>
+    // Formatear moneda COP
+    function formatCurrency(number) {
+      return new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        minimumFractionDigits: 0,
+      }).format(number);
+    }
+
+    // Cargar carrito desde localStorage
+    function cargarCarrito() {
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const contenedor = document.getElementById("contenedor-carrito");
+      contenedor.innerHTML = "";
+
+      if (carrito.length === 0) {
+        contenedor.innerHTML =
+          '<p class="sin-productos">No tienes productos en el carrito.</p>';
+        document.getElementById("btnConfirmarPedido").style.display = "none";
+        document.getElementById("selectorVendedor").style.display = "none";
+        return;
+      }
+
+      // Crear tabla de productos
+      const tabla = document.createElement("table");
+      const thead = document.createElement("thead");
+      thead.innerHTML = `
+        <tr>
+          <th>Producto</th>
+          <th>Medida</th>
+          <th>Color</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Subtotal</th>
+          <th>Acciones</th>
+        </tr>
+      `;
+      tabla.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      let total = 0;
+
+      carrito.forEach((producto, index) => {
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${producto.nombre}</td>
+          <td>${producto.medida}</td>
+          <td>${producto.color}</td>
+          <td>${producto.cantidad}</td>
+          <td>${formatCurrency(producto.precio)}</td>
+          <td>${formatCurrency(subtotal)}</td>
+          <td><button class="eliminar-btn" data-index="${index}">Eliminar</button></td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+
+      tabla.appendChild(tbody);
+      contenedor.appendChild(tabla);
+
+      const divTotal = document.createElement("div");
+      divTotal.id = "total-carrito";
+      divTotal.textContent = "Total: " + formatCurrency(total);
+      contenedor.appendChild(divTotal);
+
+      document.getElementById("btnConfirmarPedido").style.display = "block";
+      document.getElementById("selectorVendedor").style.display = "block";
+
+      // Añadir eventos a botones eliminar
+      document.querySelectorAll(".eliminar-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const index = parseInt(this.getAttribute("data-index"), 10);
+          eliminarProducto(index);
+        });
+      });
+    }
+
+    // Eliminar producto del carrito
+    function eliminarProducto(index) {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      carrito.splice(index, 1);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      cargarCarrito();
+    }
+
+    // Confirmar pedido (envío POST al backend)
+    document
+      .getElementById("btnConfirmarPedido")
+      .addEventListener("click", function () {
+        const emailCliente = sessionStorage.getItem("emailCliente");
+        if (!emailCliente) {
+          alert("Debe iniciar sesión para confirmar el pedido.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        const vendedorSeleccionado = document.getElementById("selectorVendedor").value;
+        if (!vendedorSeleccionado) {
+          alert("Por favor, seleccione un vendedor.");
+          return;
+        }
+
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        if (carrito.length === 0) {
+          alert("No hay productos para confirmar.");
+          return;
+        }
+
+        // Simulamos obtener el idCliente, puedes cambiar para obtenerlo real según tu login
+        const idCliente = parseInt(sessionStorage.getItem("idCliente")) || 1;
+
+        // Calcular total real del carrito
+        const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+
+        // Construir objeto pedido para backend
+        const pedido = {
+          estado: "En preparación",
+          fecha: new Date().toISOString().split("T")[0], // formato YYYY-MM-DD
+          idCliente: idCliente,
+          idVendedor: parseInt(vendedorSeleccionado),
+          total: total,
+        };
+
+        fetch("http://localhost:8081/api/pedidos", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(pedido),
+})
+.then(async (response) => {
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Error del servidor: ${response.status} - ${errorText}`);
+  }
+  return response.json();
+})
+.then((data) => {
+  alert("Pedido creado con éxito, este es el ID: (" + data.idPedido + ") del pedido para hacerle seguimiento");
+  localStorage.removeItem("carrito");
+  cargarCarrito();
+})
+.catch((error) => {
+  alert("Error al crear el pedido: " + error.message);
+  console.error("Error detalle:", error);
+});
+      });
+
+    // Cargar carrito al inicio
+    document.addEventListener("DOMContentLoaded", cargarCarrito);
+  </script>
+</body>
+</html>

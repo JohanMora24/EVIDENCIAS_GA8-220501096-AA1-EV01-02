@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iniciar Sesión - Kabod Muebles</title>
+    <link rel="stylesheet" href="Style.css" />
+    <script defer src="js.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Encabezado con el logo y menú -->
+    <header>
+        <h1><img src="IMAGENES/logo pequeño.png" alt="Logo Kabod Muebles" /></h1>
+        <nav>
+            <ul>
+                <li><a href="login.html" class="activo">INICIAR SESIÓN</a></li>
+                <li><a href="INICIO.html">INICIO</a></li>
+                <li><a href="salas.html">SALAS</a></li>
+                <li><a href="comedores.html">COMEDORES</a></li>
+                <li><a href="contacto.html">CONTACTENOS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección de inicio de sesión -->
+    <main class="login-container">
+        <h1>INICIAR SESIÓN</h1>
+        <form id="formLogin">
+            <input type="text" id="loginEmail" placeholder="usuario" required />
+            <input type="password" id="loginContrasena" placeholder="contraseña" required />
+            <button type="submit">Iniciar Sesión</button>
+            <h2><a href="recuperación.html">¿Olvidó su contraseña? </a></h2>
+            <h3><a href="REGISTRO_USUARIO.html"> Regístrese</a></h3>
+        </form>
+    </main>
+
+</body>
+</html>

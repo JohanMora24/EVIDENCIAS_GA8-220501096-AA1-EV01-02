@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Kabod Muebles</title>
+    <link rel="stylesheet" href="Style.css">
+    <script defer src="js.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1><img src="IMAGENES/logo pequeño.png"></h1>
+            <nav>
+                <ul>
+                <li><a href="login.html">INICIAR SESIÓN</a></li>
+                <li><a href="INICIO.html">INICIO</a></li>
+                <li><a href="salas.html">SALAS</a></li>
+                <li><a href="comedores.html">COMEDORES</a></li>
+                <li><a href="contacto.html">CONTACTENOS</a></li>
+            </ul>
+            </nav>
+        </header>
+    <section class="usuario">
+    <main>
+        <h1>RESTABLECER CONTRASEÑA</h1>
+    </main> 
+    <section class="recuperacion">
+        <form id="formRecuperacion">
+    <label for="emailRecuperacion">ESCRIBA SU CORREO ELECTRÓNICO:</label>
+    <input type="email" id="emailRecuperacion" name="correo" required>
+
+    <button type="submit">Enviar código al correo</button>
+
+    <div id="mensaje-recuperacion" style="margin-top: 10px;"></div>
+</form>
+    </section>
+    
+    </body>
+</html>

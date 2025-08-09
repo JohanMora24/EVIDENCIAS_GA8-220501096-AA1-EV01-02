@@ -1,0 +1,204 @@
+/* PRINCIPAL*/
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #ededed;
+}   
+
+/* Estilos del encabezado */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
+    background-color: #ffcc01;
+    box-shadow: 0 2px 1px #08080889;
+}
+ header img {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  display: block;
+  
+ }
+
+ h1 {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 40px;
+}
+
+h2 {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+nav ul li a.activo {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 1px #08080889;
+}
+
+p{
+    font-weight:bolder;
+}
+
+/* Estilos etapas de elaboración */
+main {
+    padding: 10px;
+}
+
+.productos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.producto {
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #ffcc01;
+}
+
+.producto img {
+    width: 200px;
+    border-radius: 10px;
+}
+
+.producto p{
+    color: #000000;
+}
+
+
+/* Estilos boton principal */
+.contacto {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+   
+}
+
+button {
+    padding: 30px 20px;
+    border: none;
+    background: #ffcc01;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.738);
+    cursor: pointer;
+    font-weight: normal;
+    border-radius: 5px;
+}
+
+.video button{
+    background-color: #ffcc00;
+    border: none;
+    padding: 2%;
+    margin: 19px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px
+}
+
+h5{
+    font-size: 20px;
+    background-color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 2px 5px #ffcc00;
+}
+
+/* Estilos de las redes sociales */
+footer {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+}
+
+footer img {
+    width: 50px;
+}
+
+/* PROCESOS */
+
+.procesos {
+    display: flex;
+    justify-content:left;
+    margin-left: 60px;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.proceso {
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #ffcc01;
+}
+
+.proceso img {
+    width: 400px;
+    border-radius: 10px;
+}
+
+.proceso p{
+    color: #000000;
+    font-size: 35px;
+}
+
+.proceso h2{
+    font-size: 500 px;
+    color: #ffcc00;
+}
+
+/* VIDEO */
+
+video p{
+    font-size: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sala Napoly | Kabod Muebles</title>
+    <link rel="stylesheet" href="Style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Para el botón activo de medida */
+        .medida-btn.activo {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><img src="IMAGENES/logo pequeño.png" alt="Logo Kabod Muebles" /></h1>
+        <nav>
+            <ul>
+                <li><a href="login.html">INICIAR SESIÓN</a></li>
+                <li><a href="INICIO.html">INICIO</a></li>
+                <li><a href="salas.html" class="activo">SALAS</a></li>
+                <li><a href="comedores.html">COMEDORES</a></li>
+                <li><a href="contacto.html">CONTACTENOS</a></li>
+                <li><a href="carrito_compras.html" class="activo">CARRITO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="producto-detalle">
+        <div class="imagen-producto">
+            <img id="imagen-sala" src="IMAGENES/sala_napoly.jpeg" alt="Sala Napoly" />
+            <h4>
+                Sala compuesta por 3 módulos, puff baúl, mesa de centro,<br />
+                y 5 cojines decorativos (escógelos en el color que más te guste)
+            </h4>
+        </div>
+        <div class="info-producto">
+            <h1>SALA NAPOLY</h1>
+            <p>
+                <strong>PRECIO:</strong> <strong id="precio-producto">$2.500.000</strong>
+            </p>
+
+            <h3>MEDIDAS</h3>
+            <button type="button" class="medida-btn" data-medida="2 MTS" data-precio="2500000" onclick="seleccionarMedida(this)">2 MTS</button>
+            <button type="button" class="medida-btn" data-medida="2.5 MTS" data-precio="2600000" onclick="seleccionarMedida(this)">2.5 MTS</button>
+            <button type="button" class="medida-btn" data-medida="3 MTS" data-precio="3200000" onclick="seleccionarMedida(this)">3 MTS</button>
+
+            <h3>COLOR</h3>
+            <select id="colorSeleccionado">
+                <option value="Azul">Azul petróleo</option>
+                <option value="Gris">Gris oscuro</option>
+                <option value="Beige">Beige</option>
+                <option value="Cafe">Cafe</option>
+                <option value="Blanco">Blanco</option>
+            </select>
+
+            <h3>CANTIDAD</h3>
+            <input type="number" id="cantidadSeleccionada" value="1" min="1" />
+
+            <button id="btnAgregarCarrito" class="carrito"> 🛒AGREGAR AL CARRITO 🛒</button>
+        </div>
+    </section>
+
+    <section class="materiales">
+        <h2>TIPO DE MATERIAL PARA EL TAPIZADO</h2>
+        <div class="opciones-material">
+            <img src="IMAGENES/azul.jpg" alt="Material 1" />
+            <img src="IMAGENES/rosa.jpg" alt="Material 2" />
+            <img src="IMAGENES/pranna.jpg" alt="Material 3" />
+            <img src="IMAGENES/cafe.jpg" alt="Material 4" />
+        </div>
+    </section>
+
+    <footer>
+        <a href="https://www.instagram.com/kabodmuebles/"><img src="IMAGENES/instagram.png" alt="Instagram" /></a>
+        <a href="https://www.facebook.com/kabodmuebles/"><img src="IMAGENES/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="IMAGENES/tiktok.png" alt="TikTok" /></a>
+        <a href="#"><img src="IMAGENES/gmail.png" alt="Correo" /></a>
+    </footer>
+
+    <script>
+        let medidaSeleccionada = "2 MTS";
+        let precioSeleccionado = 2500000;
+
+        // Cambiar imagen según medida seleccionada
+        function cambiarImagen(nuevaImagen) {
+            document.getElementById("imagen-sala").src = nuevaImagen;
+        }
+
+        // Seleccionar medida, cambiar imagen, actualizar precio y marcar botón activo
+        function seleccionarMedida(btn) {
+            // Quitar clase activo a todos
+            document.querySelectorAll(".medida-btn").forEach((b) => b.classList.remove("activo"));
+            // Agregar clase activo al seleccionado
+            btn.classList.add("activo");
+            // Guardar medida seleccionada
+            medidaSeleccionada = btn.getAttribute("data-medida");
+            // Guardar precio
+            precioSeleccionado = parseInt(btn.getAttribute("data-precio"), 10);
+
+            // Cambiar imagen según medida
+            let imgMap = {
+                "2 MTS": "IMAGENES/sala_napoly.jpeg",
+                "2.5 MTS": "IMAGENES/Napoly_2.5mts.jpeg",
+                "3 MTS": "IMAGENES/Napoly_3mts.jpeg",
+            };
+            cambiarImagen(imgMap[medidaSeleccionada]);
+
+            // Actualizar precio en pantalla con formato moneda
+            document.getElementById("precio-producto").textContent = formatCurrency(precioSeleccionado);
+        }
+
+        // Formatear número a moneda colombiana
+        function formatCurrency(number) {
+            return new Intl.NumberFormat("es-CO", {
+                style: "currency",
+                currency: "COP",
+                minimumFractionDigits: 0,
+            }).format(number);
+        }
+
+        // Agregar producto al carrito en localStorage
+        document.getElementById("btnAgregarCarrito").addEventListener("click", function () {
+            const color = document.getElementById("colorSeleccionado").value;
+            const cantidad = parseInt(document.getElementById("cantidadSeleccionada").value);
+
+            if (cantidad <= 0 || isNaN(cantidad)) {
+                alert("Por favor ingrese una cantidad válida.");
+                return;
+            }
+
+            const producto = {
+                id: "napoly01",
+                nombre: "Sala Napoly",
+                precio: precioSeleccionado,
+                medida: medidaSeleccionada,
+                color: color,
+                cantidad: cantidad,
+            };
+
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+            carrito.push(producto);
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+
+            alert("Producto agregado al carrito.");
+        });
+
+        // Al cargar la página, selecciona por defecto la medida 2 MTS y configura todo
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnDefault = document.querySelector('.medida-btn[data-medida="2 MTS"]');
+            if (btnDefault) btnDefault.click();
+        });
+    </script>
+</body>
+</html>
+
